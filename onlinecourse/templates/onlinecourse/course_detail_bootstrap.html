@@ -43,7 +43,7 @@
     <div class="container-fluid">
             <h2>{{ course.name }}</h2>
             <div class="card-columns-vertical">
-                {% for lesson in course.lesson_set.all %}
+                {% for lesson in course.lesson_set.all() %}
                     <div class="card mt-1">
                         <div class="card-header"><h5>Lesson {{lesson.order|add:1}}: {{lesson.title}}</h5></div>
                         <div class="card-body">{{lesson.content}}</div>
@@ -71,8 +71,9 @@
                             {% for question in course.lesson_set.all %}
                                 <div class="card mt-1">
                                     <div class="card-header"><h5>{{question.question_text}}</h5></div>
+                                    {% csrf_token %}
                                     <div class="card-body">
-                                        {% for choice in question.choice_set.all %}
+                                        {% for choice in question.choice_set.all() %}
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input type="checkbox" name="choice_{{choice.id}}"
