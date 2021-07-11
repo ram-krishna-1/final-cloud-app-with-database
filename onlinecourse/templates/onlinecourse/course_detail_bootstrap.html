@@ -71,7 +71,6 @@
                             {% for question in course.lesson_set.all %}
                                 <div class="card mt-1">
                                     <div class="card-header"><h5>{{question.question_text}}</h5></div>
-                                    {% csrf_token %}
                                     <div class="card-body">
                                         {% for choice in question.choice_set.all %}
                                         <div class="form-check">
